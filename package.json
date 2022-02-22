@@ -1,0 +1,36 @@
+{
+  "name": "rabbit-kata",
+  "version": "0.0.1",
+  "description": "A kata with rabbits",
+  "license": "ISC",
+  "scripts": {
+    "eat": "esy x eat",
+    "farm": "esy x farm"
+  },
+  "dependencies": {
+    "@opam/amqp-client-lwt": "2.2.2",
+    "@opam/dream": "1.0.0~alpha3",
+    "@opam/dune": "*",
+    "@opam/ppx_yojson_conv": "v0.14.0",
+    "@opam/yojson": "1.7.0",
+    "ocaml": ">=4.12"
+  },
+  "devDependencies": {
+    "@opam/ocaml-lsp-server": "1.10.1",
+    "@opam/ocamlformat": "0.20.1",
+    "@opam/ocamlformat-rpc": "0.20.1",
+    "@opam/ocamlformat-rpc-lib": "0.19.0"
+  },
+  "resolutions": {
+    "esy-openssl": "esy-packages/esy-openssl#619ae2d46ca981ec26ab3287487ad98b157a01d1"
+  },
+  "esy": {
+    "build": "dune build -p #{self.name}",
+    "release": {
+      "releasedBinaries": [
+        "eat",
+        "farm"
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+(executables
+ (names farm eat)
+ (public_names farm eat)
+ (libraries dream amqp-client-lwt)
+ (preprocess
+  (pps ppx_yojson_conv))
+ (ocamlc_flags
+  (:standard -warn-error -a+31+8)))
