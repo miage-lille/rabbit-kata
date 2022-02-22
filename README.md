@@ -5,6 +5,9 @@
 The objective of this kata is to manipulate the concepts of inter-process communication. We will see several types of IPC: timers, RPC REST calls and RPC calls via RabbitMQ.
 In this kata, we'll talk about a rabbit farm. We will have a service that creates and feeds the rabbits and another service that manages the rabbit farm.
 
+Here our system :
+![rabbit_system](./rabbit-kata.jpg)
+
 ## Setup
 
 ```
@@ -57,11 +60,11 @@ This syntactic sugar gives us a direct style syntax:
 ```ocaml
   let foo = Lwt.bind Lwt.return_unit (fun x -> Lwt.return x)
 (* same as *)
-  let foo_infix = 
-    let open Lwt in 
+  let foo_infix =
+    let open Lwt in
     Lwt.return_unit >>= (fun x -> Lwt.return x)
 (* same as *)
-  let foo_let = 
+  let foo_let =
     let open LwtSyntax in
     let* x = Lwt.return_unit in
     Lwt.return x
@@ -69,7 +72,7 @@ This syntactic sugar gives us a direct style syntax:
 
 So, to use it in a function, we can write:
 ```ocaml
-let my_connection = 
+let my_connection =
   let open LwtSyntax in
   let* connection = get_connection () in
   connection
@@ -115,7 +118,7 @@ These two backends communicate via RabbitMQ with an [RPC](https://www.rabbitmq.c
 
 ### Eat
 
-[Dream](https://aantron.github.io/dream/) is setup with a logger and some routes: 
+[Dream](https://aantron.github.io/dream/) is setup with a logger and some routes:
 - The dream application is started by [Dream.run](https://aantron.github.io/dream/#val-run)
 - [Dream.logger](https://aantron.github.io/dream/#val-logger) is a middleware added to the web application to handle async logs. Those you will produce using [Dream.log](https://aantron.github.io/dream/#val-log)
 - [Dream.router](https://aantron.github.io/dream/#val-router) that handle our routes
